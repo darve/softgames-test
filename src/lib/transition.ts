@@ -61,4 +61,13 @@ export class Transition {
             if (this.cb) this.cb();
         }
     };
+
+    flip() {
+        const temp_start = this.start;
+        const temp_finish = this.finish;
+
+        this.start = Number(temp_start);
+        this.finish = Number(temp_finish);
+
+    }
 }

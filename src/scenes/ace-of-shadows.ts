@@ -8,13 +8,14 @@ interface Scene {
     update: (delta: number) => void;
 }
 
-export const ace_of_shadows = async (): Promise<Scene> => {
+export const ace_of_shadows = async (container: Container): Promise<Scene> => {
 
     const app = new Application();
     await app.init({
         canvas: document.querySelector('#pixi-canvas') as HTMLCanvasElement,
         background: "#34495e",
         resizeTo: window,
+
         autoStart: false,
         sharedTicker: false
     });
@@ -67,6 +68,7 @@ export const ace_of_shadows = async (): Promise<Scene> => {
     });
 
     const update = (delta: number) => {
+        console.log('updating');
         transitions.map((t, i) => {
             t.tick();
             if (t.dead) transitions.splice(i, 1);
@@ -74,6 +76,7 @@ export const ace_of_shadows = async (): Promise<Scene> => {
     };
 
     const render = () => {
+        console.log('rendering');
         app.render();
     }
 

@@ -4,7 +4,14 @@ import { quick_sprite } from "../lib/utils";
 export const phoenix_flame = async () => {
 
     const app = new Application();
-    await app.init({ canvas: document.querySelector('#pixi-canvas') as HTMLCanvasElement, background: "#1099bb", resizeTo: window });
+    await app.init({
+        canvas: document.querySelector('#pixi-canvas') as HTMLCanvasElement,
+        background: "#1099bb",
+        resizeTo: window,
+        autoStart: false,
+        sharedTicker: false
+
+    });
 
     const w = window.innerWidth;
     const h = window.innerHeight;
