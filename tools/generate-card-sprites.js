@@ -7,7 +7,6 @@ import { draw_rounded_rect } from './rounded-rect.js';
 const WIDTH = 400;
 const HEIGHT = 600;
 const W2 = WIDTH / 2;
-const H2 = HEIGHT / 2;
 
 const colours = [
     '#16a085',
@@ -34,7 +33,6 @@ function drawCard(ctx, card_num) {
 
     ctx.fillStyle = colours[Math.floor(Math.random() * colours.length)];
     ctx.fillRect(0, 0, WIDTH, HEIGHT);
-    // draw_rounded_rect(ctx, 0, 0, 400, 600, 50);
     ctx.fill();
 
     ctx.fillStyle = '#ffffff';
