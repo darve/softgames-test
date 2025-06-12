@@ -1,4 +1,4 @@
-import { Container, Text, TextStyle, Sprite, Assets, Graphics } from 'pixi.js';
+import { Container, Text, TextStyle, Sprite, Assets, Texture, Graphics } from 'pixi.js';
 
 interface RichTextOptions {
     style?: TextStyle;
@@ -9,13 +9,13 @@ interface RichTextOptions {
 
 export class RichText extends Container {
     content: string;
-    images: { [key: string]: Sprite }; // e.g., { smile: 'smile.png', star: 'star.png' }
+    images: { [key: string]: Texture }; // e.g., { smile: 'smile.png', star: 'star.png' }
     style: TextStyle;
     maxWidth: number;
     lineHeight: number;
     imageHeight: number;
 
-    constructor(content: string, images: { [key: string]: Sprite } = {}, options: RichTextOptions = {}) {
+    constructor(content: string, images: { [key: string]: Texture } = {}, options: RichTextOptions = {}) {
         super();
         this.content = content;
         this.images = images; // e.g., { smile: 'smile.png', star: 'star.png' }
@@ -69,7 +69,7 @@ export class RichText extends Container {
                 }
             } else if (token.type === 'image') {
                 const key = token.value;
-                const tex = this.images[key].texture;
+                const tex = this.images[key];
                 if (!tex) continue;
 
                 // const texture = await Assets.load(src);
@@ -91,8 +91,7 @@ export class RichText extends Container {
         let gfx = new Graphics();
         gfx
             .roundRect(-20, -20, this.maxWidth + 40, this.getLocalBounds().maxY + 40, 10)
-            .fill({ color: 0xFFFFFF }) // Fill with red
-
+            .fill({ color: 0xFFFFFF })
         this.addChildAt(gfx, 0);
 
     }

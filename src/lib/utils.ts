@@ -1,13 +1,10 @@
 import { Assets, Container, Sprite, Texture } from "pixi.js";
 
-export const quick_fetch_sprite = async (src: string): Promise<Sprite> => {
+export const fetch_texture = async (src: string): Promise<Texture> => {
     const response = await fetch(src);
     const blob = await response.blob();
     const imageBitmap = await createImageBitmap(blob);
-    const texture = Texture.from(imageBitmap);
-    const newSprite = new Sprite(texture);
-    newSprite.anchor.set(0.5);
-    return newSprite;
+    return Texture.from(imageBitmap);
 }
 
 export const quick_sprite = async (src: string): Promise<Sprite> => {

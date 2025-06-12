@@ -26,7 +26,7 @@ import { Scene } from "./types";
     phoenix_flame: await phoenix_flame(containers.phoenix_flame),
   } as const;
 
-  const active_scene: Scene | null = scenes.phoenix_flame;
+  const active_scene: Scene | null = scenes.magic_words;
   const ticker = new Ticker();
 
   ticker.add((ticker) => {
