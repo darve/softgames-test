@@ -1,15 +1,15 @@
-
-import { Application, Container, Ticker } from "pixi.js";
+import { Application, Container, Ticker, Graphics } from "pixi.js";
 import { ace_of_shadows } from "./scenes/ace-of-shadows";
 import { magic_words } from "./scenes/magic-words";
 import { phoenix_flame } from "./scenes/phoenix-flame";
+import { Scene } from "./types";
 
 (async () => {
 
   const app = new Application();
   await app.init({
     canvas: document.querySelector('#pixi-canvas') as HTMLCanvasElement,
-    background: "#34495e",
+    background: "#2980B9",
     resizeTo: window
   });
 
@@ -21,35 +21,28 @@ import { phoenix_flame } from "./scenes/phoenix-flame";
   };
 
   const scenes = {
-    ace_of_shadows: await ace_of_shadows(scene_containers.ace_of_shadows),
-    magic_words: await magic_words(scene_containers.magic_words),
-    phoenix_flame: await phoenix_flame(scene_containers.phoenix_flame),
+    // ace_of_shadows: await ace_of_shadows(containers.ace_of_shadows),
+    magic_words: await magic_words(containers.magic_words),
+    phoenix_flame: await phoenix_flame(containers.phoenix_flame),
   } as const;
 
-  const active_scene: string | null = null;
-
+  const active_scene: Scene | null = scenes.phoenix_flame;
   const ticker = new Ticker();
 
-
   ticker.add((ticker) => {
-
     if (active_scene) {
-
+      active_scene.update(ticker.deltaTime);
     }
-
-
-    // active_scene.update(ticker.deltaTime);
-    // active_scene.render();
   });
 
   const init = async () => {
-
-    app.stage.addChild(containers.ace_of_shadows);
+    // app.stage.addChild(containers.ace_of_shadows);
     app.stage.addChild(containers.magic_words);
     app.stage.addChild(containers.phoenix_flame);
     app.stage.addChild(containers.ui);
-
     ticker.start();
   };
+
+  init();
 
 })();

@@ -1,17 +1,8 @@
-import { Application, Assets, Container, Sprite } from "pixi.js";
+import { Container, Sprite } from "pixi.js";
 import { quick_sprite } from "../lib/utils";
+import { Scene } from '../types';
 
-export const phoenix_flame = async () => {
-
-    const app = new Application();
-    await app.init({
-        canvas: document.querySelector('#pixi-canvas') as HTMLCanvasElement,
-        background: "#1099bb",
-        resizeTo: window,
-        autoStart: false,
-        sharedTicker: false
-
-    });
+export const phoenix_flame = async (container: Container): Promise<Scene> => {
 
     const w = window.innerWidth;
     const h = window.innerHeight;
@@ -19,4 +10,8 @@ export const phoenix_flame = async () => {
     const h2 = h / 2;
 
 
+
+    return {
+        update: (delta: number) => { }
+    }
 };
