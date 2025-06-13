@@ -39,11 +39,14 @@ export const phoenix_flame = async (container: Container): Promise<Scene> => {
       flames.map((particle: FlameParticle) => {
         particle.frame++;
         if (particle.frame > particle.life) {
+          container.removeChild(particle);
+          container.addChildAt(particle, 0);
           particle.reset();
         }
         particle.pos.plusEq(particle.direction);
         particle.x = particle.pos.x;
         particle.y = particle.pos.y;
+        particle.alpha *= 0.9999;
       });
     },
   };
@@ -93,5 +96,6 @@ class flame extends Sprite {
     this.speed = Math.random() * 2;
     this.direction = new Vec(0, -this.speed);
     this.direction = this.direction.rotate(Math.random() * 1 - 0.5, true);
+    this.alpha = 1;
   }
 }
