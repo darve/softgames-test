@@ -4,15 +4,12 @@ Hello intrepid code-reiewer. I thought I would include some of my thoughts as I'
 
 
 
-> Considerations
+> Observations
 
+There seem to be a handful of `easter eggs` in the test that challenge common challenges when working with pixi.js, and client requirements.
 
-
-- [ ] Some kind of loading spinner would be a good shout.
-- [ ] Optimise any image assets on deploy
-- [ ] Konami code (?)
-
-
+- The conversation json has a number of _mistakes_, such as the missing avatar for neighbour, and the missing emoji.
+- Attempting to load the images via the usual Assets mechanism didn't work on account of their API trying to serve up optimised assets that PIXI wasn't expecting.
 
 > Composition
 
@@ -32,3 +29,10 @@ a-->d
 
 ```
 
+> Issues
+
+I've run out of time so there are a lot of issues with this.
+
+- I was going to use the new `ParticleContainer` but it seems that it is still unstable.
+- Particle Emmitter would have been a good fallback but I decided to do a light touch implementation of my own, which isn't that brilliant.
+- I'd like each scene to reset when the user revisits it. 

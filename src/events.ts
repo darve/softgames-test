@@ -1,4 +1,3 @@
-
-import { EventEmitter } from 'pixi.js'
+import { EventEmitter } from "pixi.js";
 
 export const events = new EventEmitter();
