@@ -5,6 +5,7 @@ import { phoenix_flame } from "./scenes/phoenix-flame";
 import { Scene } from "./types";
 import { quick_button, quick_sprite } from "./lib/utils";
 import { Transition } from "./lib/transition";
+import Stats from "stats.js";
 
 const get_positions = () => {
   const w = window.innerWidth;
@@ -39,9 +40,13 @@ const get_positions = () => {
 
   let active_scene: any = null;
   let animating = false;
+  const stats = new Stats();
+  stats.showPanel(0); // 0 = FPS
+  document.body.appendChild(stats.dom);
 
   const ticker = new Ticker();
   ticker.add((ticker) => {
+    stats.begin();
     if (active_scene) {
       active_scene.update(ticker.deltaTime);
     }
@@ -50,6 +55,7 @@ const get_positions = () => {
       t.tick();
       if (t.dead) transitions.splice(i, 1);
     });
+    stats.end();
   });
 
   /**
