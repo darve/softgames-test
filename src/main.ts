@@ -1,10 +1,11 @@
-import { Application, Container, Ticker, Graphics } from "pixi.js";
+import { Application, Container, Ticker } from "pixi.js";
 import { ace_of_shadows } from "./scenes/ace-of-shadows";
 import { magic_words } from "./scenes/magic-words";
 import { phoenix_flame } from "./scenes/phoenix-flame";
-import { Scene } from "./types";
 import { quick_button, quick_sprite } from "./lib/utils";
 import { Transition } from "./lib/transition";
+
+// @ts-ignore
 import Stats from "stats.js";
 
 const get_positions = () => {
@@ -39,7 +40,6 @@ const get_positions = () => {
   } as const;
 
   let active_scene: any = null;
-  let animating = false;
   const stats = new Stats();
   stats.showPanel(0); // 0 = FPS
   document.body.appendChild(stats.dom);
@@ -184,9 +184,6 @@ const get_positions = () => {
           step: (v) => {
             hello.y = v;
           },
-          cb: () => {
-            animating = false;
-          },
         })
       );
 
@@ -202,7 +199,6 @@ const get_positions = () => {
             btn_phoenix_flame.y = v;
           },
           cb: () => {
-            animating = false;
             resolve();
           },
         })
@@ -268,7 +264,6 @@ const get_positions = () => {
             btn_phoenix_flame.y = v;
           },
           cb: () => {
-            animating = false;
             resolve();
           },
         })

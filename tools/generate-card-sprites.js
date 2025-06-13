@@ -10,25 +10,12 @@ const W2 = WIDTH / 2;
 let colour_index = 0;
 
 const colours = [
-
     '#c0392b',
     '#d35400',
     '#f39c12',
     '#27ae60',
     '#2980b9',
     '#8e44ad',
-
-
-    // '#95A6A6',
-    // '#ECF0F1'
-    // // '#16a085',
-    // // '#2980b9',
-    // // '#8e44ad',
-    // // '#2c3e50',
-    // // '#d35400',
-    // // '#c0392b',
-    // // '#f39c12',
-    // // '#7f8c8d'
 ]
 
 // Create a canvas and get its context
@@ -42,8 +29,6 @@ registerFont('./tools/opensans.ttf', {
 function drawCard(ctx, card_num) {
 
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
-
-    // ctx.fillStyle = colours[Math.floor(Math.random() * colours.length)];
     ctx.fillStyle = colours[colour_index];
     ctx.strokeStyle = '#2C3D50';
     ctx.lineWidth = 20;
@@ -55,9 +40,6 @@ function drawCard(ctx, card_num) {
     ctx.shadowOffsetY = 5;                    // vertical offset
     ctx.fill();
     ctx.restore();
-    // draw_rounded_rect(ctx, 10, 10, 380, 580, 50);
-    // draw_rounded_rect(ctx, 10, 10, 390, 590, 40);
-    // ctx.stroke();
 
     ctx.fillStyle = '#ffffff';
     ctx.font = "100 50px Open Sans normal";

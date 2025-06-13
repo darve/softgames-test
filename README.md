@@ -52,4 +52,5 @@ I've run out of time as I am juggling multiple projects at the moment so there a
 
 > Summary
 
-There are a few different ways I could / should have approached this but hopefully what I've made gives you an idea of how i do things. 
+- There are a few different ways I could / should have approached this but hopefully what I've made gives you an idea of how i do things. 
+- I have made complex game systems in the past which would likely give you a better insight into my suitability for the role I'm applying for. I am very keen to show them to you.

@@ -1,4 +1,4 @@
-import { Assets, Container, Graphics, Sprite, Texture } from "pixi.js";
+import { Container, Sprite, Texture } from "pixi.js";
 import { Scene } from "../types";
 import { get_scene_defaults, fetch_texture } from "../lib/utils";
 import { RichText } from "../lib/richtext";
@@ -48,10 +48,7 @@ export const magic_words = async (container: Container): Promise<Scene> => {
   const emoji_textures: RemoteAsset[] = [];
 
   const transitions: Transition[] = [];
-  const timeline: any = [];
   const message_delay = 1;
-  let time_passed = 0;
-  let timeline_running = false;
 
   /**
    * Missing Avatar. Naughty.
@@ -172,17 +169,6 @@ export const magic_words = async (container: Container): Promise<Scene> => {
   });
 
   const update = (delta: number) => {
-    // console.log('Updating Magic Words Scene');
-    // time_passed += message_delay * delta;
-    // if (time_passed < message_delay) return;
-    // if (time_passed * message_delay) {
-    //     time_passed = message_delay * delta;
-
-    //     // if (timeline.length) {
-    //     //     const [char_sprite, msg] = timeline.shift();
-    //     // }
-    // }
-
     transitions.map((t, i) => {
       t.tick();
       if (t.dead) transitions.splice(i, 1);
@@ -192,5 +178,6 @@ export const magic_words = async (container: Container): Promise<Scene> => {
   return {
     container,
     update,
+    reset: () => {},
   };
 };

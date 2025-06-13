@@ -2,7 +2,6 @@ import { Container, Sprite, Texture } from "pixi.js";
 import { get_scene_defaults, quick_sprite } from "../lib/utils";
 import { Transition } from "../lib/transition";
 import { Scene } from "../types";
-import { events } from "../events";
 
 export const ace_of_shadows = async (container: Container): Promise<Scene> => {
   const { width, height, w2, h2 } = get_scene_defaults(container);
@@ -34,7 +33,6 @@ export const ace_of_shadows = async (container: Container): Promise<Scene> => {
       ]);
       card_sprites.push(sprite);
     });
-    events.emit("scene:assets_loaded");
     setup_cards();
   });
 
@@ -74,34 +72,6 @@ export const ace_of_shadows = async (container: Container): Promise<Scene> => {
       );
     });
   };
-
-  async function loadSpriteFromURL(url: string) {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    const objectURL = URL.createObjectURL(blob);
-
-    const texture = Texture.from(objectURL);
-    const sprite = new Sprite(texture);
-
-    sprite.x = 100;
-    sprite.y = 100;
-
-    container.addChild(sprite);
-  }
-
-  loadSpriteFromURL(
-    "https://api.dicebear.com/9.x/personas/png?body=squared&clothingColor=6dbb58&eyes=open&hair=buzzcut&hairColor=6c4545&mouth=smirk&nose=smallRound&skinColor=e5a07e"
-  );
-
-  events.on("ace_of_shadows:show", () => {
-    console.log("ace_of_shadows:show");
-    container.visible = true;
-  });
-
-  events.on("ace_of_shadows:hide", () => {
-    console.log("ace_ofs_shadows:hide");
-    container.visible = false;
-  });
 
   return {
     reset: setup_cards,

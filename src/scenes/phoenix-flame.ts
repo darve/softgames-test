@@ -1,11 +1,4 @@
-import {
-  Assets,
-  Container,
-  Particle,
-  ParticleContainer,
-  Sprite,
-  Texture,
-} from "pixi.js";
+import { Assets, Container, Sprite, Texture } from "pixi.js";
 import { Scene } from "../types";
 import Vec from "../lib/vec2";
 
@@ -82,8 +75,6 @@ class flame extends Sprite {
     this.direction = new Vec(0, -this.speed);
     this.direction = this.direction.rotate(Math.random() * 1 - 0.5, true);
     this.scale.set(0.5 + Math.random() * 0.5);
-    // this.color = 0xd35400; // Orange color for the flame
-    // this.tint = 0xd35400;
   }
 
   reset() {
