@@ -14,6 +14,14 @@ export const quick_sprite = async (src: string): Promise<Sprite> => {
     return newSprite;
 }
 
+export const quick_button = async (spr: Sprite, x: number, y: number) => {
+    spr.anchor.set(0.5);
+    spr.x = x;
+    spr.y = y;
+    spr.interactive = true;
+    spr.cursor = 'pointer';
+};
+
 export const get_scene_defaults = (container: Container): {
     container: Container;
     width: number;

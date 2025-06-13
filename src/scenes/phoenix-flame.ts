@@ -12,6 +12,7 @@ export const phoenix_flame = async (container: Container): Promise<Scene> => {
 
 
     return {
+        container,
         update: (delta: number) => { }
     }
 };

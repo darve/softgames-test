@@ -182,6 +182,7 @@ export const magic_words = async (container: Container): Promise<Scene> => {
     };
 
     return {
+        container,
         update
     };
 

@@ -96,6 +96,7 @@ export const ace_of_shadows = async (container: Container): Promise<Scene> => {
     });
 
     return {
+        container,
         update
     }
 

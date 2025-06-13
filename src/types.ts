@@ -1,5 +1,7 @@
+import { Container } from "pixi.js";
+
 export interface Scene {
-    // show: () => void;
-    // hide: () => void;
+    container: Container;
     update: (delta: number) => void;
+    reset: () => void;
 }
