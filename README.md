@@ -42,6 +42,7 @@ The spec asked for 144 sprites so I thought i could demonstrate that I love buil
 
 I've run out of time as I am juggling multiple projects at the moment so there are a number of things I haven't done that the spec asked for.
 
+- None of my animations / transitions actually use deltatime so they're fixed timestep which is really bad. Normally I do this properly but I was leveraging some of my old helper code so please don't judge me.
 - I was going to use the new `ParticleContainer` but it seems that it is still unstable.
 - Particle Emmitter would have been a good fallback but I decided to do a light touch implementation of my own, which isn't that brilliant.
 - I'd like each scene to reset when the user revisits it. 
