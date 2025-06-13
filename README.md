@@ -1,6 +1,6 @@
 ### Softgames test
 
-Hello intrepid code-reviewer. I thought I would include some of my thoughts as I'm completing this test so you can get an insight into how I approach this sort of thing. My first thought is "this is actually fairly involved for a 24 hour coding test", so I'm assuming you're looking to see how handle that scenario. 
+Hello intrepid code-reviewer. I thought I would include some of my thoughts as I'm completing this test so you can get an insight into how I approach this sort of thing. My first thought is "this is actually fairly involved for a 24 hour coding test", so I'm assuming you're looking to see how I handle that scenario. Admittedly I could have just banged out something that met the minimum requirements but I'm not in the business of making rubbish stuff.
 
 When looking through my code, you will note that I didn't include a third party library for tweening / animation. This is because I have written loads of little helper functions over the years for that kind of thing. The ones I've included here aren't the best but they are at least verbosely implemented so hopefully its easy to see the logic behind them.
 
