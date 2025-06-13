@@ -13,16 +13,15 @@ const get_positions = () => {
     hello: h * 0.4,
     buttons: h * 0.75,
   };
-}
+};
 
 (async () => {
-
   const transitions: any[] = [];
   const app = new Application();
   await app.init({
-    canvas: document.querySelector('#pixi-canvas') as HTMLCanvasElement,
+    canvas: document.querySelector("#pixi-canvas") as HTMLCanvasElement,
     background: "#3498DB",
-    resizeTo: window
+    resizeTo: window,
   });
 
   const containers = {
@@ -56,68 +55,107 @@ const get_positions = () => {
   /**
    * Initialize our menu entities
    */
-  const hello = await quick_sprite('/hello.png');
-  const btn_ace_of_shadows = await quick_sprite('/button-ace-of-shadows.png');
-  const btn_magic_words = await quick_sprite('/button-magic-words.png');
-  const btn_phoenix_flame = await quick_sprite('/button-phoenix-flame.png');
-  const btn_menu = await quick_sprite('/button-menu.png');
+  const hello = await quick_sprite("/hello.png");
+  const btn_ace_of_shadows = await quick_sprite("/button-ace-of-shadows.png");
+  const btn_magic_words = await quick_sprite("/button-magic-words.png");
+  const btn_phoenix_flame = await quick_sprite("/button-phoenix-flame.png");
+  const btn_menu = await quick_sprite("/button-menu.png");
 
   containers.ui.addChild(btn_ace_of_shadows);
   containers.ui.addChild(btn_magic_words);
   containers.ui.addChild(btn_phoenix_flame);
   containers.ui.addChild(btn_menu);
 
-  quick_button(btn_ace_of_shadows, (app.screen.width / 2) - (btn_magic_words.width) - 32, app.screen.height + app.screen.height / 2 + 100);
-  btn_ace_of_shadows.on('pointerdown', async () => {
+  quick_button(
+    btn_ace_of_shadows,
+    app.screen.width / 2 - btn_magic_words.width - 32,
+    app.screen.height + app.screen.height / 2 + 100
+  );
+  btn_ace_of_shadows.on("pointerdown", async () => {
     await menu_hide();
-    transitions.push(new Transition({
-      delay: 0, duration: 100, start: 0, finish: 1, step: (v) => {
-        containers.ace_of_shadows.alpha = v;
-      }, cb: () => {
-        show_btn_menu();
-        active_scene = scenes.ace_of_shadows;
-      }
-    }));
+    transitions.push(
+      new Transition({
+        delay: 0,
+        duration: 100,
+        start: 0,
+        finish: 1,
+        step: (v) => {
+          containers.ace_of_shadows.alpha = v;
+        },
+        cb: () => {
+          show_btn_menu();
+          active_scene = scenes.ace_of_shadows;
+        },
+      })
+    );
   });
 
-  quick_button(btn_magic_words, app.screen.width / 2, app.screen.height + app.screen.height / 2 + 100);
-  btn_magic_words.on('pointerdown', async () => {
+  quick_button(
+    btn_magic_words,
+    app.screen.width / 2,
+    app.screen.height + app.screen.height / 2 + 100
+  );
+  btn_magic_words.on("pointerdown", async () => {
     await menu_hide();
-    transitions.push(new Transition({
-      delay: 0, duration: 100, start: 0, finish: 1, step: (v) => {
-        containers.magic_words.alpha = v;
-      }, cb: () => {
-        show_btn_menu();
-        active_scene = scenes.magic_words;
-      }
-    }));
+    transitions.push(
+      new Transition({
+        delay: 0,
+        duration: 100,
+        start: 0,
+        finish: 1,
+        step: (v) => {
+          containers.magic_words.alpha = v;
+        },
+        cb: () => {
+          show_btn_menu();
+          active_scene = scenes.magic_words;
+        },
+      })
+    );
   });
 
-  quick_button(btn_phoenix_flame, (app.screen.width / 2) + btn_magic_words.width + 20, app.screen.height + app.screen.height / 2 + 100);
-  btn_phoenix_flame.on('pointerdown', async () => {
+  quick_button(
+    btn_phoenix_flame,
+    app.screen.width / 2 + btn_magic_words.width + 20,
+    app.screen.height + app.screen.height / 2 + 100
+  );
+  btn_phoenix_flame.on("pointerdown", async () => {
     await menu_hide();
-    transitions.push(new Transition({
-      delay: 0, duration: 100, start: 0, finish: 1, step: (v) => {
-        containers.phoenix_flame.alpha = v;
-      }, cb: () => {
-        show_btn_menu();
-        active_scene = scenes.phoenix_flame;
-      }
-    }));
+    transitions.push(
+      new Transition({
+        delay: 0,
+        duration: 100,
+        start: 0,
+        finish: 1,
+        step: (v) => {
+          containers.phoenix_flame.alpha = v;
+        },
+        cb: () => {
+          show_btn_menu();
+          active_scene = scenes.phoenix_flame;
+        },
+      })
+    );
   });
 
   quick_button(btn_menu, -(40 + btn_menu.width / 2), 40 + btn_menu.height / 2);
-  btn_menu.on('pointerdown', async () => {
-
+  btn_menu.on("pointerdown", async () => {
     hide_btn_menu();
-    transitions.push(new Transition({
-      delay: 0, duration: 100, start: 1, finish: 0, step: (v) => {
-        active_scene.container.alpha = v;
-      }, cb: () => {
-        active_scene = null;
-        menu_show();
-      }
-    }));
+    transitions.push(
+      new Transition({
+        delay: 0,
+        duration: 100,
+        start: 1,
+        finish: 0,
+        step: (v) => {
+          active_scene.container.alpha = v;
+        },
+        cb: () => {
+          active_scene = null;
+          menu_show();
+        },
+      })
+    );
   });
 
   containers.ui.addChild(hello);
@@ -131,52 +169,68 @@ const get_positions = () => {
     hello.y = -app.screen.height / 2;
 
     return new Promise((resolve) => {
-      transitions.push(new Transition({
-        delay: 0, duration: 100, start: -app.screen.height / 2, finish: pos.hello,
-        step: (v) => {
-          hello.y = v;
-        },
-        cb: () => {
-          animating = false;
-        }
-      }));
+      transitions.push(
+        new Transition({
+          delay: 0,
+          duration: 100,
+          start: -app.screen.height / 2,
+          finish: pos.hello,
+          step: (v) => {
+            hello.y = v;
+          },
+          cb: () => {
+            animating = false;
+          },
+        })
+      );
 
-      transitions.push(new Transition({
-        delay: 0, duration: 100, start: app.screen.height + (app.screen.height / 2), finish: pos.buttons,
-        step: (v) => {
-          btn_ace_of_shadows.y = v;
-          btn_magic_words.y = v;
-          btn_phoenix_flame.y = v;
-        },
-        cb: () => {
-          animating = false;
-          resolve();
-        }
-      }));
+      transitions.push(
+        new Transition({
+          delay: 0,
+          duration: 100,
+          start: app.screen.height + app.screen.height / 2,
+          finish: pos.buttons,
+          step: (v) => {
+            btn_ace_of_shadows.y = v;
+            btn_magic_words.y = v;
+            btn_phoenix_flame.y = v;
+          },
+          cb: () => {
+            animating = false;
+            resolve();
+          },
+        })
+      );
     });
-  }
+  };
 
   const show_btn_menu = async (): Promise<void> => {
-    transitions.push(new Transition({
-      delay: 0, duration: 100,
-      start: -Number(40 + btn_menu.width / 2),
-      finish: Number(40 + btn_menu.width / 2),
-      step: (v) => {
-        btn_menu.x = v;
-      }
-    }));
-  }
+    transitions.push(
+      new Transition({
+        delay: 0,
+        duration: 100,
+        start: -Number(40 + btn_menu.width / 2),
+        finish: Number(40 + btn_menu.width / 2),
+        step: (v) => {
+          btn_menu.x = v;
+        },
+      })
+    );
+  };
 
   const hide_btn_menu = async (): Promise<void> => {
-    transitions.push(new Transition({
-      delay: 0, duration: 100,
-      start: Number(40 + btn_menu.width / 2),
-      finish: -Number(40 + btn_menu.width / 2),
-      step: (v) => {
-        btn_menu.x = v;
-      }
-    }));
-  }
+    transitions.push(
+      new Transition({
+        delay: 0,
+        duration: 100,
+        start: Number(40 + btn_menu.width / 2),
+        finish: -Number(40 + btn_menu.width / 2),
+        step: (v) => {
+          btn_menu.x = v;
+        },
+      })
+    );
+  };
 
   const menu_hide = async (): Promise<void> => {
     const pos = get_positions();
@@ -184,27 +238,37 @@ const get_positions = () => {
     hello.y = pos.hello;
 
     return new Promise((resolve) => {
-      transitions.push(new Transition({
-        delay: 0, duration: 100, start: pos.hello, finish: -app.screen.height / 2,
-        step: (v) => {
-          hello.y = v;
-        }
-      }));
+      transitions.push(
+        new Transition({
+          delay: 0,
+          duration: 100,
+          start: pos.hello,
+          finish: -app.screen.height / 2,
+          step: (v) => {
+            hello.y = v;
+          },
+        })
+      );
 
-      transitions.push(new Transition({
-        delay: 0, duration: 100, start: pos.buttons, finish: app.screen.height + (app.screen.height / 2),
-        step: (v) => {
-          btn_ace_of_shadows.y = v;
-          btn_magic_words.y = v;
-          btn_phoenix_flame.y = v;
-        },
-        cb: () => {
-          animating = false;
-          resolve();
-        }
-      }));
+      transitions.push(
+        new Transition({
+          delay: 0,
+          duration: 100,
+          start: pos.buttons,
+          finish: app.screen.height + app.screen.height / 2,
+          step: (v) => {
+            btn_ace_of_shadows.y = v;
+            btn_magic_words.y = v;
+            btn_phoenix_flame.y = v;
+          },
+          cb: () => {
+            animating = false;
+            resolve();
+          },
+        })
+      );
     });
-  }
+  };
 
   const init = async () => {
     app.stage.addChild(containers.ace_of_shadows);
@@ -216,5 +280,4 @@ const get_positions = () => {
   };
 
   init();
-
 })();

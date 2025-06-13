@@ -13,7 +13,9 @@ export const ace_of_shadows = async (container: Container): Promise<Scene> => {
     const rightContainer = new Container();
     const modifiers: [number, number, number][] = [];
 
-    // We are using two containers. I believe the crux of this part of the test is the classic z-indexing nightmare. Removing from one container and popping into another is a simple way of resolving that, especially given the requirements here.
+    // We are using two containers. I believe the crux of this part of the test is the classic z-indexing nightmare. 
+    // Removing from one container and popping into another is a simple way of resolving that, especially given 
+    // the requirements here.
     container.addChild(rightContainer);
     container.addChild(leftContainer);
 
@@ -46,6 +48,7 @@ export const ace_of_shadows = async (container: Container): Promise<Scene> => {
 
     const setup_cards = () => {
         console.log('Setting up cards');
+        transitions.splice(0, transitions.length); // empty the transitions array.
         card_sprites.forEach((sprite, index) => {
             rightContainer.removeChild(sprite); // Just in case.
             leftContainer.addChild(sprite);
@@ -96,6 +99,7 @@ export const ace_of_shadows = async (container: Container): Promise<Scene> => {
     });
 
     return {
+        reset: setup_cards,
         container,
         update
     }
